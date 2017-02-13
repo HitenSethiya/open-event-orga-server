@@ -9,7 +9,7 @@ class RegistrationForm(Form):
     lastname = StringField('Last_Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     email_confirm = StringField('Email_Confirm', validators=[DataRequired(), Email()])
-    job_title = StringField('Job_Title', [validators.Length(min=3, max=30)])
+    job_title = StringField('Job_Title', validators=[Length(min=3, max=30)])
     phone_no = TelField('Phone_no')
     work_phone = TelField('Work_Phone')
     mobile_phone = TelField('Mob_no')
