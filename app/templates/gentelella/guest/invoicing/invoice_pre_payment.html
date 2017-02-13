@@ -12,7 +12,7 @@
     <div id="registration-information-holder">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">{{_("Registration Information")}}</h3>
+                    <h3 class="panel-title">{{_("Registration Information")}}</h3>
             </div>
             <div class="panel-body" style="padding-bottom: 10px;">
                 <form class="form-horizontal" data-toggle="validator" id="order-payment-form"
@@ -31,7 +31,8 @@
                         <br>
                     {% endif %}
                     <input type="hidden" name="identifier" value="{{ invoice.identifier }}">
-                    <div class="form-group">
+                    {{ reg_form.as_p }}
+                    {#<div class="form-group">
                         <label for="firstname" class="col-sm-4 control-label">{{_("First name")}} <span
                                 class="required">*</span></label>
                         <div class="col-sm-6">
@@ -73,7 +74,8 @@
                         </div>
                     {% else %}
                         <input type="hidden" name="email" value="{{ current_user.email | default('', true) }}">
-                    {% endif %}
+                    {% endif %}#}
+
 
                     <h2 style="font-weight:300; text-transform: uppercase; margin-top: 35px; color:#5bc0de;">
                         <i class="fa fa-ticket"></i>

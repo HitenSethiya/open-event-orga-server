@@ -10,6 +10,7 @@ from xhtml2pdf import pisa
 from app.helpers.data import save_to_db
 from app.helpers.invoicing import InvoicingManager
 from app.helpers.payment import PayPalPaymentsManager, StripePaymentsManager
+from app.helpers.registration_form_userend import RegistrationForm
 
 
 def create_pdf(pdf_data):
@@ -46,12 +47,12 @@ def view_invoice(invoice_identifier):
 
     if PayPalPaymentsManager.get_credentials():
         pay_by_paypal = True
-
+    reg_form = RegistrationForm()
     return render_template('gentelella/guest/invoicing/invoice_pre_payment.html', invoice=invoice, event=invoice.event,
                            countries=list(pycountry.countries),
                            pay_by_stripe=pay_by_stripe,
                            pay_by_paypal=pay_by_paypal,
-                           stripe_publishable_key=stripe_publishable_key)
+                           stripe_publishable_key=stripe_publishable_key, form=reg_form)
 
 
 @event_invoicing.route('/<invoice_identifier>/view/')
@@ -79,6 +80,7 @@ def view_invoice_after_payment_pdf(invoice_identifier):
 
 @event_invoicing.route('/initiate/payment/', methods=('POST',))
 def initiate_invoice_payment():
+
     result = InvoicingManager.initiate_invoice_payment(request.form)
     if result:
         if request.form.get('pay_via_service', 'stripe') == 'stripe':

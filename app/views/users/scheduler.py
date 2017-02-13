@@ -37,3 +37,9 @@ def unpublish(event_id):
     save_to_db(event, "Event schedule unpublished")
     flash('The schedule has been unpublished for this event', 'success')
     return redirect(url_for('.display_view', event_id=event_id))
+
+@event_scheduler.route('/search',methods = ['POST'])
+def search(request,sessions):
+    query = request.form['search']
+    results = sessions.filter
+

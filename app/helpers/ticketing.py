@@ -318,6 +318,23 @@ class TicketingManager(object):
                 city = form['city']
                 state = form['state']
                 zipcode = form['zipcode']
+                job_title = form['job_title']
+                phone_no = form['phone_no']
+                work_phone = form['work_phone']
+                mobile_phone = form['mobile_phone']
+                tax_business_info = form['tax_business_info']
+                # billing_address = form['billing_address']
+                work_address = form['work_address']
+                shipping_address = form['shipping_address']
+                home_address = form['home_address']
+                organisation = form['organisation']
+                website = form['website']
+                blog = form['blog']
+                twitter = form['twitter']
+                facebook = form['facebook']
+                git_repo = form['git_repo']
+                gender = form['gender']
+                dob = form['dob']
                 order.address = address
                 order.city = city
                 order.state = state
@@ -345,18 +362,56 @@ class TicketingManager(object):
             holders_lastnames = form.getlist('holders[lastname]')
             holders_ticket_ids = form.getlist('holders[ticket_id]')
             holders_emails = form.getlist('holders[email]')
+            holders_job_title = form('holders[job_title]')
+            holders_phone_no = form('holders[phone_no]')
+            holders_work_phone = form('holders[work_phone]')
+            holders_mobile_phone = form('holders[mobile_phone]')
+            holders_tax_business_info = form('holders[tax_business_info]')
+            #holders_billing_address = form('holders[billing_address]')
+            holders_work_address = form('holders[work_address]')
+            holders_shipping_address = form('holders[shipping_address]')
+            holders_home_address = form('holders[home_address]')
+            holders_organisation = form('holders[organisation]')
+            holders_website = form('holders[website]')
+            holders_blog = form('holders[blog]')
+            holders_twitter = form('holders[twitter]')
+            holders_facebook = form('holders[facebook]')
+            holders_git_repo = form('holders[git_repo]')
+            holders_gender = form('holders[gender]')
+            holders_dob = form('holders[dob]')
+
 
             for i, firstname in enumerate(holders_firstnames):
                 data = {
                     'firstname': firstname,
                     'lastname': holders_lastnames[i]
+
                 }
                 holder_user = DataGetter.get_or_create_user_by_email(holders_emails[i], data)
                 ticket_holder = TicketHolder(firstname=data['firstname'],
                                              lastname=data['lastname'],
                                              ticket_id=int(holders_ticket_ids[i]),
                                              email=holder_user.email,
-                                             order_id=order.id)
+                                             order_id=order.id,
+                                             job_title=holders_job_title[i],
+                                             phone_no=holders_phone_no[i],
+                                             work_phone=holders_work_phone[i],
+                                             mobile_phone=holders_mobile_phone[i],
+                                             tax_business_info=holders_tax_business_info[i],
+                                             # billing_address = holders_billing_address[i],
+                                             work_address=holders_work_address[i],
+                                             shipping_address=holders_shipping_address[i],
+                                             home_address=holders_home_address[i],
+                                             organisation=holders_organisation[i],
+                                             website=holders_website[i],
+                                             blog=holders_blog[i],
+                                             twitter=holders_twitter[i],
+                                             facebook=holders_facebook[i],
+                                             git_repo=holders_git_repo[i],
+                                             gender=holders_gender[i],
+                                             dob=holders_dob[i]
+
+                                             )
                 if order.status == "completed":
                     send_email_for_after_purchase(holder_user.email, invoice_id, order_url, order.event.name,
                                                   order.event.organizer_name)
