@@ -1,3 +1,5 @@
 {
-    "directory": "app/static/vendor"
+    "directory": "app/static/vendor",
+    "proxy": "http://hiten:kunal@202.141.80.24:3128",
+	"https-proxy": "http://hiten:kunal@202.141.80.24:3128"
 }

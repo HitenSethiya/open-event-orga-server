@@ -14,6 +14,7 @@ from app.helpers.data import save_to_db
 from app.helpers.payment import PayPalPaymentsManager
 from app.helpers.ticketing import TicketingManager
 from app.helpers.data_getter import DataGetter
+from app.helpers.registration_form_userend import RegistrationForm
 
 
 def create_pdf(pdf_data):
@@ -83,10 +84,11 @@ def view_order(order_identifier):
     else:
         stripe_publishable_key = "No Key Set"
     fees = DataGetter.get_fee_settings_by_currency(order.event.payment_currency)
+    form = RegistrationForm()
     return render_template('gentelella/guest/ticketing/order_pre_payment.html', order=order, event=order.event,
                            countries=list(pycountry.countries),
                            stripe_publishable_key=stripe_publishable_key,
-                           fees=fees)
+                           fees=fees, form=form)
 
 
 @ticketing.route('/<order_identifier>/view/')

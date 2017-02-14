@@ -1,29 +1,29 @@
-from flask_wtf import Form
-from wtforms import StringField, SelectField, DateField
+from flask_wtf import FlaskForm
+from wtforms import StringField, SelectField, DateField, TextAreaField
 from wtforms.validators import *
 from wtforms.fields.html5 import TelField
 
 
-class RegistrationForm(Form):
-    firstname = StringField('First_Name', validators=[DataRequired()])
-    lastname = StringField('Last_Name', validators=[DataRequired()])
+class RegistrationForm(FlaskForm):
+    firstname = StringField('First Name', validators=[DataRequired()])
+    lastname = StringField('Last Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    email_confirm = StringField('Email_Confirm', validators=[DataRequired(), Email()])
-    job_title = StringField('Job_Title', validators=[Length(min=3, max=30)])
-    phone_no = TelField('Phone_no')
-    work_phone = TelField('Work_Phone')
-    mobile_phone = TelField('Mob_no')
-    tax_business_info = StringField('Tax_Business_Info', validators=[DataRequired()])
+    email_confirm = StringField('Confirm Email', validators=[DataRequired(), Email()])
+    job_title = StringField('Job Title', validators=[Length(min=3, max=30)])
+    phone_no = TelField('Phone no')
+    work_phone = TelField('Work Phone')
+    mobile_phone = TelField('Mob no')
+    tax_business_info = StringField('Tax and Business Info', validators=[DataRequired()])
     #billing_address = StringField('Billing_Address', validators=[Length(max=100)])
-    home_address = StringField('Home_Address', validators=[Length(max=100)])
-    work_address = StringField('Work_Address', validators=[Length(max=100)])
-    shipping_address = StringField('Shipping_Address', validators=[Length(max=100)])
+    home_address = TextAreaField('Home Address', validators=[Length(max=100)])
+    work_address = TextAreaField('Work Address', validators=[Length(max=100)])
+    shipping_address = TextAreaField('Shipping Address', validators=[Length(max=100)])
     organisation = StringField('Organisation', validators=[Length(max=50)])
     website = StringField('Website', validators=[URL()])
     blog = StringField('Blog', validators=[URL()])
     twitter = StringField('Twitter', validators=[URL()])
     facebook = StringField('Facebook', validators=[URL()])
-    git_repo = StringField('Git_Repo', validators=[URL()])
+    git_repo = StringField('Main Git Repository', validators=[URL()])
     gender = SelectField('Gender', choices=[('M', 'Male'), ('F', 'Female'), ('U', 'Prefer Not to Declare')])
     dob = DateField('Date of Birth', format='%d/%m/%Y', validators=[Optional()])
 # define auto-update function for fields if the user is logged in

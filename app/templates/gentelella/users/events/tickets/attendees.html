@@ -103,6 +103,7 @@
             <th>
                 {{ _("Email") }}
             </th>
+
             <th>
                 {{ _("Action") }}
             </th>
@@ -169,7 +170,7 @@
     <script src="{{ url_for('static', filename='vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
     <script type="text/javascript">
-        var options = ['#completed', '#placed', '#pending', '#expired', '#cancelled', '#all'];  
+        var options = ['#completed', '#placed', '#pending', '#expired', '#cancelled', '#all'];
         $.fn.dataTable.ext.search.push(
             function (settings, data, dataIndex) {
                 var user_option = $("input[name=show_state]:checked").val();
@@ -204,18 +205,18 @@
             "scrollX": true
         });
         if ($.inArray(window.location.hash, options) != -1)
-        {    
+        {
             $(window.location.hash).button('toggle');
             $("div.toolbar").prepend($("#toolbar-holder").html());
-        } 
-        else 
-        {           
-              $('#Completed').button('toggle');           
-              $("div.toolbar").prepend($("#toolbar-holder").html());          
+        }
+        else
+        {
+              $('#Completed').button('toggle');
+              $("div.toolbar").prepend($("#toolbar-holder").html());
         }
         $("input[name=show_state]").change(function () {
             table.draw();
-            window.location.hash = $("input[name=show_state]:checked").val();   
+            window.location.hash = $("input[name=show_state]:checked").val();
 
         });
 
