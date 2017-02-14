@@ -47,12 +47,12 @@ def view_invoice(invoice_identifier):
 
     if PayPalPaymentsManager.get_credentials():
         pay_by_paypal = True
-    reg_form = RegistrationForm()
+    form = RegistrationForm()
     return render_template('gentelella/guest/invoicing/invoice_pre_payment.html', invoice=invoice, event=invoice.event,
                            countries=list(pycountry.countries),
                            pay_by_stripe=pay_by_stripe,
                            pay_by_paypal=pay_by_paypal,
-                           stripe_publishable_key=stripe_publishable_key, form=reg_form)
+                           stripe_publishable_key=stripe_publishable_key, form=form)
 
 
 @event_invoicing.route('/<invoice_identifier>/view/')

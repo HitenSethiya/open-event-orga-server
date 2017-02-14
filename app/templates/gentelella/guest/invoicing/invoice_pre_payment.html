@@ -31,7 +31,28 @@
                         <br>
                     {% endif %}
                     <input type="hidden" name="identifier" value="{{ invoice.identifier }}">
-                    {{ reg_form.as_p }}
+                    {{  form.firstname.label }}: {{ form.firstname(class="col-sm-6 form-control") }}<br>
+                                {{  form.lastname.label }}: {{ form.lastname (class="col-sm-6 form-control")  }}<br>
+                                {{  form.email.label }}: {{ form.email (class="col-sm-6 form-control")  }}<br>
+                                {{  form.email_confirm.label }}: {{ form.email_confirm (class="col-sm-6 form-control")  }}<br>
+                                {{  form.job_title.label }}: {{ form.job_title (class="col-sm-6 form-control")  }}<br>
+                                {{  form.phone_no.label }}: {{ form.phone_no (class="col-sm-6 form-control")  }}<br>
+                                {{  form.work_phone.label }}: {{ form.work_phone (class="col-sm-6 form-control")  }}<br>
+                                {{  form.mobile_phone.label }}: {{ form.mobile_phone (class="col-sm-6 form-control")  }}<br>
+                                {{  form.tax_business_info.label }}: {{ form.tax_business_info (class="col-sm-6 form-control")  }}<br>
+                               {#  {{  form.billing_address.label }}: {{ form.billing_address(class="col-sm-6 form-control")  }}<br>#}
+                                {{  form.home_address.label }}: {{ form.home_address (class="col-sm-6 form-control")  }}<br>
+                                {{  form.work_address.label }}: {{ form.work_address (class="col-sm-6 form-control")  }}<br>
+                                {{  form.shipping_address.label }}: {{ form.shipping_address (class="col-sm-6 form-control")  }}<br>
+                                {{  form.organisation.label }}: {{ form.organisation (class="col-sm-6 form-control")  }}<br>
+                                {{  form.website.label }}: {{ form.website (class="col-sm-6 form-control")  }}<br>
+                                {{  form.blog.label }}: {{  form.blog(class="col-sm-6 form-control")  }}<br>
+                                {{  form.twitter.label }}: {{ form.twitter (class="col-sm-6 form-control")  }}<br>
+                                {{  form.facebook.label }}: {{ form.facebook (class="col-sm-6 form-control")  }}<br>
+                                {{  form.git_repo.label }}: {{ form.git_repo (class="col-sm-6 form-control")  }}<br>
+                                {{  form.gender.label }}: {{ form.gender (class="col-sm-6 form-control")  }}<br>
+                                {{  form.dob.label }}: {{ form.dob (class="col-sm-6 form-control")  }}<br>
+
                     {#<div class="form-group">
                         <label for="firstname" class="col-sm-4 control-label">{{_("First name")}} <span
                                 class="required">*</span></label>
