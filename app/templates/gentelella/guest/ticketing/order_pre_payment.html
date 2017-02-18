@@ -93,6 +93,15 @@
                         {{ _("Ticket Holders' Information") }}
                         <hr style="margin:0;border-width: 2px; border-color: #5bc0de;">
                     </h2>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                      <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+                {% endwith %}
                     {% for ticket_order in order.tickets %}
 
                         {% for i in range(0, ticket_order.quantity) %}

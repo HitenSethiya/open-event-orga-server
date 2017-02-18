@@ -134,27 +134,32 @@ def view_order_tickets_after_payment_pdf(order_identifier):
 @ticketing.route('/initiate/payment/', methods=('POST',))
 def initiate_order_payment():
     paid_via = request.form.get('pay_via_service', 'stripe')
-    result = TicketingManager.initiate_order_payment(request.form, paid_via)
-    if result:
-        if request.form.get('pay_via_service', 'stripe') != 'paypal':
-            return jsonify({
-                "status": "ok",
-                "email": result.user.email,
-                "action": "start_stripe"
-                if result.status == 'initialized' and paid_via == 'stripe'
-                else "show_completed"
-            })
+    form = request.form
+    if not form.is_valid():
+        flash(request, ('Please correct the error below.'))
+
+    else:
+        result = TicketingManager.initiate_order_payment(request.form, paid_via)
+        if result:
+            if request.form.get('pay_via_service', 'stripe') != 'paypal':
+                return jsonify({
+                    "status": "ok",
+                    "email": result.user.email,
+                    "action": "start_stripe"
+                    if result.status == 'initialized' and paid_via == 'stripe'
+                    else "show_completed"
+                })
+            else:
+                return jsonify({
+                    "status": "ok",
+                    "email": result.user.email,
+                    "action": "start_paypal",
+                    "redirect_url": PayPalPaymentsManager.get_checkout_url(result)
+                })
         else:
             return jsonify({
-                "status": "ok",
-                "email": result.user.email,
-                "action": "start_paypal",
-                "redirect_url": PayPalPaymentsManager.get_checkout_url(result)
+                "status": "error"
             })
-    else:
-        return jsonify({
-            "status": "error"
-        })
 
 
 @ticketing.route('/charge/payment/', methods=('POST',))

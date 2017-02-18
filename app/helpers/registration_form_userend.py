@@ -7,7 +7,7 @@ from wtforms.fields.html5 import TelField
 class RegistrationForm(FlaskForm):
     firstname = StringField('First Name', validators=[DataRequired()])
     lastname = StringField('Last Name', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired(), Email(), EqualTo('email_confirm', message='Passwords must match')])
     email_confirm = StringField('Confirm Email', validators=[DataRequired(), Email()])
     job_title = StringField('Job Title', validators=[Length(min=3, max=30)])
     phone_no = TelField('Phone no')
@@ -26,5 +26,7 @@ class RegistrationForm(FlaskForm):
     git_repo = StringField('Main Git Repository', validators=[URL()])
     gender = SelectField('Gender', choices=[('M', 'Male'), ('F', 'Female'), ('U', 'Prefer Not to Declare')])
     dob = DateField('Date of Birth', format='%d/%m/%Y', validators=[Optional()])
+
+
 # define auto-update function for fields if the user is logged in
 # define a function to only display those fields that are selected by event creator

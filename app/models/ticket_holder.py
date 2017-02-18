@@ -18,7 +18,7 @@ class TicketHolder(db.Model):
     work_phone = db.Column(db.Integer)
     mobile_phone = db.Column(db.Integer)
     tax_business_info = db.Column(db.String)
-    #billing_address = db.Column(db.String)
+    # billing_address = db.Column(db.String)
     work_address = db.Column(db.String)
     shipping_address = db.Column(db.String)
     home_address = db.Column(db.String)
@@ -51,23 +51,23 @@ class TicketHolder(db.Model):
                  ticket_id=None,
                  checked_in=False,
                  order_id=None,
-                 job_title = None,
-                 phone_no = None,
-                 work_phone = None,
-                 mobile_phone = None,
-                 tax_business_info = None,
-                 #billing_address = None,
-                 work_address = None,
-                 shipping_address = None,
-                 home_address = None,
-                 organisation = None,
-                 website = None,
-                 blog = None,
-                 twitter = None,
-                 facebook = None,
-                 git_repo = None,
-                 gender = None,
-                 dob = None
+                 job_title=None,
+                 phone_no=None,
+                 work_phone=None,
+                 mobile_phone=None,
+                 tax_business_info=None,
+                 # billing_address = None,
+                 work_address=None,
+                 shipping_address=None,
+                 home_address=None,
+                 organisation=None,
+                 website=None,
+                 blog=None,
+                 twitter=None,
+                 facebook=None,
+                 git_repo=None,
+                 gender=None,
+                 dob=None
                  ):
         self.firstname = firstname
         self.lastname = lastname
@@ -77,7 +77,7 @@ class TicketHolder(db.Model):
         self.work_phone = work_phone
         self.mobile_phone = mobile_phone
         self.tax_business_info = tax_business_info
-        #self.billing_address = billing_address
+        # self.billing_address = billing_address
         self.work_address = work_address
         self.shipping_address = shipping_address
         self.home_address = home_address
@@ -142,4 +142,23 @@ class TicketHolder(db.Model):
                 'city': self.city,
                 'address': self.address,
                 'state': self.state,
-                'country': self.country}
+                'country': self.country,
+                'job_title': self.job_title,
+                'phone_no': self.phone_no,
+                'work_phone': self.work_phone,
+                'mobile_phone': self.mobile_phone,
+                'tax_business_info': self.tax_business_info,
+                'billing_address': self.billing_address,
+                'work_address': self.work_address,
+                'shipping_address': self.shipping_address,
+                'home_address': self.home_address,
+                'organisation': self.organisation,
+                'website': self.website,
+                'blog': self.blog,
+                'twitter': self.twitter,
+                'facebook': self.facebook,
+                'git_repo': self.git_repo,
+                'gender': self.gender,
+                'dob': self.dob,
+
+                }
